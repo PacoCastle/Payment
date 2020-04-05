@@ -109,69 +109,6 @@ namespace DatingApp.API.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("DatingApp.API.Models.Plc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Campo1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Campo2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Campo3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Campo4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Campo5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Campo6")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DeviceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Plc");
-                });
-
-            modelBuilder.Entity("DatingApp.API.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("urlPhoto")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Product");
-                });
-
             modelBuilder.Entity("DatingApp.API.Models.Role", b =>
                 {
                     b.Property<int>("Id")

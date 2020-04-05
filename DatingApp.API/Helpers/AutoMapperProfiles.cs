@@ -38,6 +38,11 @@ namespace DatingApp.API.Helpers
                     .MapFrom(u => u.Sender.Photos.FirstOrDefault(p => p.IsMain).Url))
                 .ForMember(m => m.RecipientPhotoUrl, opt => opt
                     .MapFrom(u => u.Recipient.Photos.FirstOrDefault(p => p.IsMain).Url));
+            CreateMap<PlcForCreationDto, Plc>();
+            CreateMap<Plc, PlcForReturnDto>();
+            CreateMap<ProductForRegisterDto, Product>();
+            CreateMap<Product, ProductForReturnDto>();
+            CreateMap<ProductForUpdateDto, Product>();
         }
     }
 }

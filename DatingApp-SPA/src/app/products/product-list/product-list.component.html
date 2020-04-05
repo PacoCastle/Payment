@@ -1,0 +1,46 @@
+<div class="container mt-5"> 
+
+  <div class="row" *ngIf="products.length == 0">
+    <h3>No products</h3>
+  </div>  
+</div>
+<div class="row" *ngIf="products.length > 0">
+  <table class="table table-hover" style="cursor: pointer">
+    <tr>
+      <th style="width: 20%">Name</th>
+      <th style="width: 20%">Description</th>
+      <th style="width: 20%">Status</th>
+      <th style="width: 20%">Date Created</th>
+      <th style="width: 20%">
+        <button [routerLink]="['/products/product-register']" class="btn btn-primary">Add
+        </button>
+      </th>
+    </tr>
+    <tr
+      *ngFor="let products of products"      
+    >
+      <td>{{ products.name  }}</td>
+      <td>{{ products.description  }}</td>
+      <td>{{ products.status  }}</td>
+      <td>{{ products.dateAdd  }}</td>
+      <td>
+        <button class="btn btn-success" [routerLink]="['/product/edit', products.id]" style="margin-left: 20px;"> 
+          Edit</button>
+        </td>
+      
+    </tr>
+  </table>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+  </pagination>
+</div>
+
+

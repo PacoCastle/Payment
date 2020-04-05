@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <h4>Signals</h4>
+    </div>
+    <div class="row">
+      <div class="col col-md-6">
+        <span>
+          <p>You can monitor all activities by using this module.</p>
+        </span>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr class="table-primary">
+            <th scope="col">Id</th>
+            <th scope="col">Device</th>
+            <th scope="col">Campo 1</th>
+            <th scope="col">Campo 2</th>
+            <th scope="col">Campo 3</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="signalList">
+          <tr *ngFor="let signal of signalList">
+            <td>{{ signal.id }}</td>
+            <td>{{ signal.deviceId }}</td>
+            <td>{{ signal.campo1 }}</td>
+            <td>{{ signal.campo2 }}</td>
+            <td>{{ signal.campo3 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

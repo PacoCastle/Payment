@@ -161,5 +161,32 @@ namespace DatingApp.API.Data
 
             return messages;
         }
+        public async Task<IEnumerable<Plc>> GetPlcs()
+        {
+            var plcs = _context.Plc.ToListAsync();
+
+            return await plcs;
+        }
+
+        public async Task<IEnumerable<Plc>> GetPlcForDevice(int deviceId)
+        {
+            var plcs = await _context.Plc
+                .Where(m => m.DeviceId == deviceId)
+                .ToListAsync();
+
+            return plcs;
+        }
+        public async Task<Product> GetProduct(int id)
+        {
+            return await _context.Product.FirstOrDefaultAsync(p =>
+                p.Id == id);
+        }
+
+        public async Task<PagedList<Product>> GetProducts(ProductParams productParams)
+        {
+            var products = _context.Product;
+
+            return await PagedList<Product>.CreateAsync(products, productParams.PageNumber, productParams.PageSize);
+        }
     }
 }

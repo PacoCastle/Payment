@@ -46,6 +46,12 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { PlcListComponent } from './plcs/plc-list/plc-list.component'
+import { ProductRegisterComponent } from './products/product-register/product-register.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductListResolver } from './_resolvers/product-list.resolver';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductEditResolver } from './_resolvers/product-edit.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -77,7 +83,11 @@ export class CustomHammerConfig extends HammerGestureConfig {
     HasRoleDirective,
     UserManagementComponent,
     PhotoManagementComponent,
-    RolesModalComponent
+    RolesModalComponent,
+    PlcListComponent,
+    ProductRegisterComponent,
+    ProductListComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
@@ -109,12 +119,14 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MemberEditResolver,
     ListsResolver,
     MessagesResolver,
+    ProductListResolver,
+    ProductEditResolver,
     PreventUnsavedChanges,
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
   ],
   entryComponents: [
     RolesModalComponent
-  ],
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule {}
