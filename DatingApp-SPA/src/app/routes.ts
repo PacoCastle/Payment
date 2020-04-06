@@ -19,6 +19,7 @@ import { ProductListResolver } from './_resolvers/product-list.resolver';
 import { ProductRegisterComponent } from './products/product-register/product-register.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductEditResolver } from './_resolvers/product-edit.resolver';
+import { PlcListResolver } from './_resolvers/plc-list.resolver';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -60,7 +61,8 @@ export const appRoutes: Routes = [
       },      
       {
         path: 'plcs',
-        component: PlcListComponent        
+        component: PlcListComponent,
+        resolve: { plcs: PlcListResolver }        
       },
       {
         path: 'products',

@@ -1,13 +1,16 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import * as signalR from "@aspnet/signalr";
-import { Plcs } from '../_models/plcs';
+import { Plc } from '../_models/plc';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class SignalRService {
+  
+  baseUrl = environment.apiUrl+'signalHub';
   private hubConnection: signalR.HubConnection;
-  signalReceived = new EventEmitter<Plcs>();
+  signalReceived = new EventEmitter<Plc>();
 
   constructor() {
     this.buildConnection();
@@ -15,8 +18,12 @@ export class SignalRService {
   }
 
   private buildConnection = () => {
-    this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("http://localhost:5000/signalHub") //use your api adress here and make sure you use right hub name.
+    this.hubConnection = new signalR.HubConnectionBuilder() 
+    
+    //var comillaSimple =`mi texto en comilla Simple  es '${texto}'`;
+      .withUrl("/signalHub") //use your api adress here and make sure you use right hub name.
+      .configureLogging(signalR.LogLevel.Information)
+      //.withUrl("http://localhost:5000/signalHub")      
       .build();
   };
 
@@ -38,7 +45,7 @@ export class SignalRService {
   };
 
   private registerSignalEvents() {
-    this.hubConnection.on("SignalMessageReceived", (data: Plcs) => {
+    this.hubConnection.on("SignalMessageReceived", (data: Plc) => {
       this.signalReceived.emit(data);
     });
   }

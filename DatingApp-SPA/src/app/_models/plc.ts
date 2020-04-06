@@ -1,4 +1,4 @@
-export interface Plcs {
+export interface Plc {
   id: number;
   deviceId: number;
   campo1: string;

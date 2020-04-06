@@ -21,8 +21,8 @@
             <th scope="col">Campo 3</th>
           </tr>
         </thead>
-        <tbody *ngIf="signalList">
-          <tr *ngFor="let signal of signalList">
+        <tbody *ngIf="plcs">
+          <tr *ngFor="let signal of plcs">
             <td>{{ signal.id }}</td>
             <td>{{ signal.deviceId }}</td>
             <td>{{ signal.campo1 }}</td>
@@ -35,4 +35,15 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-center">
+  <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+  </pagination>
+</div>
 <router-outlet></router-outlet>

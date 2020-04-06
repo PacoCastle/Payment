@@ -52,6 +52,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { ProductListResolver } from './_resolvers/product-list.resolver';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductEditResolver } from './_resolvers/product-edit.resolver';
+import { PlcListResolver } from './_resolvers/plc-list.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -119,6 +120,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MemberEditResolver,
     ListsResolver,
     MessagesResolver,
+    PlcListResolver,
     ProductListResolver,
     ProductEditResolver,
     PreventUnsavedChanges,

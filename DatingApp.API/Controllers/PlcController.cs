@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -32,13 +33,19 @@ namespace DatingApp.API.Controllers
             _hubContext = hubContext;
         }           
 
-        [HttpGet]
-        public async Task<IActionResult> GetPlcs()
-        {
-            var plcsFromRepo = await _repo.GetPlcs();
+        [HttpGet(Name = "GetPlcs")]
+         public async Task<IActionResult> GetPlcs([FromQuery]PlcParams plcsParams)
+         {
+              var plcsFromRepo = await _repo.GetPlcs(plcsParams);
 
-            return Ok(plcsFromRepo);
-        }
+              var plcs = _mapper.Map<IEnumerable<PlcForReturnDto>>(plcsFromRepo);              
+              
+                Response.AddPagination(plcsFromRepo.CurrentPage, plcsFromRepo.PageSize, 
+                 plcsFromRepo.TotalCount, plcsFromRepo.TotalPages);
+              
+              return Ok(plcs);
+         }
+
 
         [HttpGet("{DeviceId}")]
         public async Task<IActionResult> GetPlc(int DeviceId)
@@ -61,7 +68,7 @@ namespace DatingApp.API.Controllers
 
                  await _hubContext.Clients.All.SendAsync("SignalMessageReceived", plcToReturn);
 
-                 return CreatedAtAction("GetPhoto", new {id = plc.Id}, plcToReturn);
+                 return Ok(plcToReturn);
              };
 
               throw new Exception("Creating the plc failed on save");

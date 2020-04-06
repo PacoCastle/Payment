@@ -137,14 +137,20 @@ namespace DatingApp.API
                         }
                     });
                 });
+                app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
+            //app.UseDeveloperExceptionPage();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // app.UseSignalR(routes => {
+            //     routes.MapHub<SignalHub>("/signalHub");
+            // });
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());            
 

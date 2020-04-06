@@ -161,11 +161,11 @@ namespace DatingApp.API.Data
 
             return messages;
         }
-        public async Task<IEnumerable<Plc>> GetPlcs()
+        public async Task<PagedList<Plc>> GetPlcs(PlcParams plcParams)
         {
-            var plcs = _context.Plc.ToListAsync();
+            var plcs = _context.Plc.AsQueryable().OrderByDescending(p => p.Id);
 
-            return await plcs;
+            return await PagedList<Plc>.CreateAsync(plcs, plcParams.PageNumber, plcParams.PageSize);
         }
 
         public async Task<IEnumerable<Plc>> GetPlcForDevice(int deviceId)
