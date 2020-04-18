@@ -53,6 +53,11 @@ import { ProductListResolver } from './_resolvers/product-list.resolver';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductEditResolver } from './_resolvers/product-edit.resolver';
 import { PlcListResolver } from './_resolvers/plc-list.resolver';
+import { PaymentRegisterComponent } from './payments/payment-register/payment-register.component';
+import { PaymentListComponent } from './payments/payment-list/payment-list.component';
+import { PaymentListResolver } from './_resolvers/payment-list.resolver';
+import { PaymentEditComponent } from './payments/payment-edit/payment-edit.component';
+import { PaymentEditResolver } from './_resolvers/payment-edit.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -88,7 +93,10 @@ export class CustomHammerConfig extends HammerGestureConfig {
     PlcListComponent,
     ProductRegisterComponent,
     ProductListComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    PaymentRegisterComponent,
+    PaymentListComponent,
+    PaymentEditComponent
   ],
   imports: [
     BrowserModule,
@@ -123,6 +131,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     PlcListResolver,
     ProductListResolver,
     ProductEditResolver,
+    PaymentListResolver,
+    PaymentEditResolver,
     PreventUnsavedChanges,
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
   ],

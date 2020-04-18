@@ -1,7 +1,7 @@
-export interface Product {
+export interface Payment {
   id: number;
   name: string;
   description: string;
-  status: number;  
+  amount: number;  
   dateAdd: Date;
 }

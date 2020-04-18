@@ -1,0 +1,56 @@
+<div class="container mt-5"> 
+
+  <div class="row" *ngIf="payments.length == 0">
+    <h3>No payments</h3>
+    
+  </div>  
+</div>
+<button [routerLink]="['/payments/payment-register']" class="btn btn-primary">Add
+</button>
+<div class="row" *ngIf="payments.length > 0">
+  <table class="table table-hover" style="cursor: pointer">
+    <tr>
+      <th style="width: 20%">Name</th>
+      <th style="width: 20%">Description</th>
+      <th style="width: 20%">Amount</th>
+      <th style="width: 20%">Date Created</th>
+      <th style="width: 20%">
+        
+      </th>
+    </tr>
+    <tr
+      *ngFor="let payments of payments"      
+    >
+      <td>{{ payments.name  }}</td>
+      <td>{{ payments.description  }}</td>
+      <td>{{ payments.amount  }}</td>
+      <td>{{ payments.dateAdd  }}</td>
+      <td>
+        <button class="btn btn-success" [routerLink]="['/payment/edit', payments.id]" style="margin-left: 20px;"> 
+          Edit</button>
+        </td>
+      <td>
+        <button
+              class="btn btn-danger"
+              (click)="$event.stopPropagation()"
+              (click)="deletePayment(payments.id)"
+              style="margin-left: 20px;"
+            >
+              Delete
+            </button>  
+    </tr>
+  </table>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [(ngModel)]="pagination.currentPage"
+      [itemsPerPage]="pagination.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+  </pagination>
+</div>
+
+

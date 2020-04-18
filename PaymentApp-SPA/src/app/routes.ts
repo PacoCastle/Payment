@@ -20,6 +20,11 @@ import { ProductRegisterComponent } from './products/product-register/product-re
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductEditResolver } from './_resolvers/product-edit.resolver';
 import { PlcListResolver } from './_resolvers/plc-list.resolver';
+import { PaymentRegisterComponent } from './payments/payment-register/payment-register.component';
+import { PaymentListComponent } from './payments/payment-list/payment-list.component';
+import { PaymentListResolver } from './_resolvers/payment-list.resolver';
+import { PaymentEditComponent } from './payments/payment-edit/payment-edit.component';
+import { PaymentEditResolver } from './_resolvers/payment-edit.resolver';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -77,6 +82,21 @@ export const appRoutes: Routes = [
         path: 'product/edit/:id',
         component: ProductEditComponent,
         resolve: { product: ProductEditResolver },
+        canDeactivate: [PreventUnsavedChanges]
+      },
+      {
+        path: 'payments',
+        component: PaymentListComponent,
+        resolve: { payments: PaymentListResolver }
+      },
+      {
+        path: 'payments/payment-register',
+        component: PaymentRegisterComponent        
+      },
+      {
+        path: 'payment/edit/:id',
+        component: PaymentEditComponent,
+        resolve: { payment: PaymentEditResolver },
         canDeactivate: [PreventUnsavedChanges]
       },
     ]

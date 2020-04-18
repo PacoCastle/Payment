@@ -77,6 +77,19 @@ namespace PaymentApp.API.Controllers
                 return NoContent();
 
             throw new Exception($"Updating payment {id} failed on save");
-        }         
+        }
+        [HttpDelete("{id}")]
+         public async Task<IActionResult> DeletePayment(int id)
+         {
+              var paymentFromRepo = await _repo.GetPayment(id);
+
+              if (paymentFromRepo.Id == id)
+                 _repo.Delete(paymentFromRepo);
+
+              if (await _repo.SaveAll())
+                 return NoContent();
+
+              throw new Exception("Error deleting the payment");
+         }         
      }
  } 
